@@ -104,6 +104,7 @@ class HomeController extends Controller
             'title' => 'required|min:5|max:100',
             'content' => 'required',
             'rubric_id' => 'required|integer',
+            'picture' => 'required',
         ],
         [
             'title.required' => 'Hdie1',
@@ -112,7 +113,12 @@ class HomeController extends Controller
             'content.required' => 'Hdie4',
             'rubric_id.required' => 'Hdie5',
             'rubric_id.integer' => 'die6',
+            'picture.required' => 'Hdie7',
         ]);
+        if($request->hasFile('avatar')){
+            $folder = date('Y-m-d');
+            $request->file('picture')->store("public/picture/{$folder}");
+        }
 
         Post::create($request->all());
         return redirect()->route('home');

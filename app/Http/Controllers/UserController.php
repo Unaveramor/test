@@ -25,7 +25,7 @@ class UserController extends Controller
 
         if($request->hasFile('avatar')){
             $folder = date('Y-m-d');
-            $avatar = $request->file('avatar')->store("images/{$folder}");
+            $avatar = $request->file('avatar')->store("public/images/{$folder}");
         }
 
         $user = User::create([
